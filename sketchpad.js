@@ -9,7 +9,27 @@ $(document).ready(function() {
       $("<div>").addClass("unit").appendTo('#container');
     };
   };
-  $('.unit').hover(function() {
-    $(this).addClass("hovered");
+var mouseDown = 0;
+  $('.unit').mousedown(function() {
+    mouseDown = 1;
+});
+
+  $('.unit').mouseup(function() {
+    mouseDown = 0;
   });
+
+  $('.unit').mousemove(function() {
+    if (mouseDown === 1) {
+      $(this).addClass("hovered");
+    };
+  });
+
+  $('.modes').onClick(function() {
+    $(this).addClass("selected");
+  });
+
+  $('.eraser').onClick(function() {
+    $('.hovered').css("background-color", "white")
+  });
+
 });
