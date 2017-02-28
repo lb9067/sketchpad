@@ -10,8 +10,13 @@ $(document).ready(function() {
     };
   };
 var mouseDown = 0;
+var x = 0;
+var colors = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet'];
+var randColor = colors[Math.floor(Math.random() * colors.length)];
+
   $('.unit').mousedown(function() {
-    mouseDown = 1;
+    mouseDown = x;
+    randColor = colors[Math.floor(Math.random() * colors.length)];
 });
 
   $('.unit').mouseup(function() {
@@ -20,16 +25,37 @@ var mouseDown = 0;
 
   $('.unit').mousemove(function() {
     if (mouseDown === 1) {
-      $(this).addClass("hovered");
+      $(this).css('background-color', 'black');
     };
+    if (mouseDown === 2) {
+      $(this).css('background-color', randColor);
+    };
+    if (mouseDown === 3) {
+      $(this).css('background-color', 'white');
+    };
+
+
   });
 
-  $('.modes').onClick(function() {
-    $(this).addClass("selected");
+  $('#pen').click(function() {
+    x = 1;
+    $(this).addClass('selected');
+    $('#rainbow').removeClass('selected');
+    $('#eraser').removeClass('selected');
   });
 
-  $('.eraser').onClick(function() {
-    $('.hovered').css("background-color", "white")
+  $('#rainbow').click(function() {
+    x = 2;
+    $(this).addClass('selected');
+    $('#eraser').removeClass('selected');
+    $('#pen').removeClass('selected');
+  });
+
+  $('#eraser').click(function() {
+    x = 3;
+    $(this).addClass('selected');
+    $('#rainbow').removeClass('selected');
+    $('#pen').removeClass('selected');
   });
 
 });
